@@ -1,0 +1,27 @@
+<view class="container">
+  <loading hidden="{{loadingHide}}">
+    {{loadingText}}
+  </loading>
+
+  <view class="title">新旧程度详情</view>
+  <view class="newOldLevel_detail_view"> 
+      <view class="viewItem">
+        <view class="label">记录编号：</view>
+        <view class="content">
+          <view>{{levelId}}</view>
+        </view>
+      </view>
+
+       <view class="viewItem">
+        <view class="label">新旧程度：</view>
+        <view class="content"> 
+          <view>{{levelName}}</view>
+        </view>
+      </view>
+
+      <view>
+        <navigator class="btnReturn" open-type="navigateBack" hover-class="navigator-hover">返回</navigator>
+      </view>
+
+  </view>
+</view>

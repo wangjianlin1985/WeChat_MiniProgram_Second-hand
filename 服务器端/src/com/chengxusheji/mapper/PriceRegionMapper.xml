@@ -1,0 +1,48 @@
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace命名空间，为了对sql语句进行隔离，方便管理，mapper开发dao方式，使用namespace有特殊作用  
+mapper代理开发时将namespace指定为mapper接口的全限定名  
+ -->
+<mapper namespace="com.chengxusheji.mapper.PriceRegionMapper"> 
+<!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象 
+mapper.xml以statement为单位管理sql语句  
+ -->
+	<!-- 添加价格区间记录 -->
+	<insert id="addPriceRegion" parameterType="priceRegion">
+		insert into t_priceRegion(regionName) values 
+		(#{regionName})
+	</insert>
+
+	<!-- 按照查询条件分页查询价格区间记录 -->
+	<select id="queryPriceRegion" resultMap="priceRegionMap" >
+		select t_priceRegion.* from t_priceRegion ${where} limit #{startIndex},#{pageSize}
+	</select>
+	<resultMap id="priceRegionMap" type="priceRegion">
+        <id property="regionId" column="regionId" />
+    </resultMap>
+
+    <!-- 按照查询条件查询所有价格区间记录 -->
+	<select id="queryPriceRegionList" resultMap="priceRegionMap" >
+		select t_priceRegion.* from t_priceRegion ${where}
+	</select>
+
+    <!-- 按照查询条件的价格区间记录数 -->
+	<select id="queryPriceRegionCount" resultType="int">
+		select count(*) from t_priceRegion ${where}
+	</select>
+
+	<!-- 根据主键查询某个价格区间记录 -->
+	<select id="getPriceRegion" parameterType="int" resultMap="priceRegionMap">
+		select * from t_priceRegion where t_priceRegion.regionId = #{regionId}
+	</select>
+
+	<!-- 更新价格区间记录 -->
+	<update id="updatePriceRegion" parameterType="priceRegion">
+		update t_priceRegion set regionName=#{regionName} where regionId = #{regionId}
+	</update>
+
+	<!-- 删除价格区间记录 -->
+	<delete id="deletePriceRegion" parameterType="int">
+		delete from t_priceRegion where regionId=#{regionId}
+	</delete>
+
+</mapper>

@@ -1,0 +1,39 @@
+<view class="container">
+  <view class="toggleQview" bindtap="toggleQueryViewHide" style="padding:5px;">显示或隐藏查询视图</view>
+  <view class="queryView" hidden="{{queryViewHidden}}">
+    <view class="queryParams">
+    </view>
+
+    <view class="queryButton">
+       <button class="font_12 fl_r op-btn mr_10" bindtap="queryNewOldLevel">查询</button>
+    </view>
+  </view>
+
+  <view class="newOldLevelList">
+  <block wx:for-items="{{newOldLevels}}" wx:key="{{index}}">
+    <view class="newOldLevelItem">
+        <navigator url="newOldLevel_detail?levelId={{item.levelId}}" hover-class="navigator-hover">
+        <view class="newOldLevelText">
+          <view>记录编号：{{item.levelId}}</view>
+          <view>新旧程度：{{item.levelName}}</view>
+        </view>
+        </navigator>
+    </view>
+    <view class="opt_view" style="display:none;">
+      <button class="font_12 fl_r del-btn mr_10" bindtap="removeNewOldLevel" data-levelid="{{item.levelId}}">删除</button> 
+      <navigator url="newOldLevel_modify?levelId={{item.levelId}}" hover-class="navigator-hover">
+        <button class="font_12 fl_r op-btn mr_10">编辑</button>
+      </navigator>
+    </view>
+  </block>
+  </view>
+
+  <view hidden="{{loading_hide}}" class="loading">
+    <view class="loadingImg"><image src="/images/loading.gif" mode="aspectFill"></image></view>
+    <view class="loadingTxt">..加载中..</view>
+  </view>
+  <view class="nodata_view" hidden="{{nodata_hide}}">
+    <image src="/images/Noline.png" mode="widthFix"></image>
+  </view>
+</view>
+

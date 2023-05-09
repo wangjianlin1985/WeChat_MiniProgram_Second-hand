@@ -1,0 +1,53 @@
+<!--index.wxml-->
+<view class="container">
+   <swiper indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
+        <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+            <swiper-item>
+                <image src="{{item}}" class="slide-image" width="100%"/>
+            </swiper-item>
+        </block>
+    </swiper>
+  
+  <!--
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view> -->
+
+   <view class="newProductList"style="padding:5px;">最新发布物品</view>
+
+
+<view class="productInfoList">
+   <block wx:for-items="{{productInfos}}" wx:key="{{index}}">
+    <view class="productInfoItem">
+        <view class="productInfoImg">
+          <image src="{{item.productPhotoUrl}}"></image>
+        </view>
+        <navigator url="../productInfo/productInfo_detail?productId={{item.productId}}" hover-class="navigator-hover">
+        <view class="productInfoText">
+          <view>商品类别：{{item.productClassObj.productClassName}}</view>
+          <view>商品名称：{{item.productName}}</view>
+          <view>商品价格：{{item.price}}</view>
+          <view>成色：{{item.newOldLevelObj.levelName}}</view>
+          <view>区域：{{item.areaObj.areaName}}</view> 
+          <view>发布时间：{{item.addTime}}</view>
+        </view>
+        </navigator>
+    </view> 
+  </block>
+  </view>
+
+  <view hidden="{{loading_hide}}" class="loading">
+    <view class="loadingImg"><image src="/images/loading.gif" mode="aspectFill"></image></view>
+    <view class="loadingTxt">..加载中..</view>
+  </view>
+  
+
+  
+</view>

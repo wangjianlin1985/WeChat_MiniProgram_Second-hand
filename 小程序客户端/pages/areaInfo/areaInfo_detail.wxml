@@ -1,0 +1,27 @@
+<view class="container">
+  <loading hidden="{{loadingHide}}">
+    {{loadingText}}
+  </loading>
+
+  <view class="title">区域信息详情</view>
+  <view class="areaInfo_detail_view"> 
+      <view class="viewItem">
+        <view class="label">记录编号：</view>
+        <view class="content">
+          <view>{{areaId}}</view>
+        </view>
+      </view>
+
+       <view class="viewItem">
+        <view class="label">区域名称：</view>
+        <view class="content"> 
+          <view>{{areaName}}</view>
+        </view>
+      </view>
+
+      <view>
+        <navigator class="btnReturn" open-type="navigateBack" hover-class="navigator-hover">返回</navigator>
+      </view>
+
+  </view>
+</view>

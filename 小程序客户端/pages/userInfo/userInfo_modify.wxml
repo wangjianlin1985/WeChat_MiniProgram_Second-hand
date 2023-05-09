@@ -1,0 +1,91 @@
+<view class="container">
+  <loading hidden="{{loadingHide}}">
+    {{loadingText}}
+  </loading>
+  <view class="title">编辑用户信息</view>
+
+  <view class="userInfo_modify_view">
+    <form bindsubmit="formSubmit">
+       <view class="formItem">
+        <view class="label">手机用户名：</view>
+        <view class="formControl">
+          <input type="text" name="userInfo.user_name" disabled="true" value="{{user_name}}" />
+        </view>
+      </view>
+      <view class="formItem">
+        <view class="label">登陆密码：</view>
+        <view class="formControl">
+          <input type="text" name="userInfo.password" placeholder="请输入登陆密码" value="{{password}}" />
+        </view>
+      </view>
+
+      <view class="formItem">
+        <view class="label">姓名：</view>
+        <view class="formControl">
+          <input type="text" name="userInfo.realname" placeholder="请输入姓名" value="{{realname}}" />
+        </view>
+      </view>
+
+      <view class="formItem">
+        <view class="label">性别：</view>
+        <view class="formControl">
+          <input type="text" name="userInfo.sex" placeholder="请输入性别" value="{{sex}}" />
+        </view>
+      </view>
+
+       <view class="formItem">
+        <view class="label">出生日期：</view>
+        <view class="formControl">
+          <picker mode="date"  start="1970-01-01" end="2030-01-01" value="{{bornDate}}" bindchange="bind_bornDate_change" >
+            <view style="display:flex;border:1px solid green;">
+              <input style="width:90%;border:0px;" name="userInfo.bornDate" placeholder="选择出生日期"  value="{{bornDate}}"></input>
+              <text class="clearButton" catchtap="clear_bornDate">x</text>
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <view class="formItem">
+        <view class="label">用户qq：</view>
+        <view class="formControl">
+          <input type="text" name="userInfo.qq" placeholder="请输入用户qq" value="{{qq}}" />
+        </view>
+      </view>
+
+      <view class="formItem">
+        <view class="label">家庭地址：</view>
+        <view class="formControl">
+          <input type="text" name="userInfo.address" placeholder="请输入家庭地址" value="{{address}}" />
+        </view>
+      </view>
+
+      <view class="formItem">
+        <view class="label">用户邮箱：</view>
+        <view class="formControl">
+          <input type="text" name="userInfo.email" placeholder="请输入用户邮箱" value="{{email}}" />
+        </view>
+      </view>
+
+       <view class="formItem">
+        <view class="label">用户头像：</view>
+        <view class="formControl" bindtap="select_myPhoto">
+          <input type="text" hidden="true" name="userInfo.myPhoto" value="{{myPhoto}}" />
+          <image class="uploadPic" mode="aspectFill" src="{{myPhotoUrl}}"></image>
+          <image wx:for="{{myPhotoList}}" class="uploadPic" mode="aspectFill" src="{{item}}" wx:key=""></image>
+          <image src="../../images/upic.png" class="uploadPic" mode="widthFix"></image>
+        </view>
+      </view>
+
+      <view class="formItem">
+        <view class="label">附加信息：</view>
+        <view class="formControl">
+          <input type="text" name="userInfo.memo" placeholder="请输入附加信息" value="{{memo}}" />
+        </view>
+      </view>
+
+      <view>
+        <button class="vBtn_ok" formType="submit" disabled="{{disabled}}">提交修改</button>
+      </view>
+    </form>
+  </view>
+</view>

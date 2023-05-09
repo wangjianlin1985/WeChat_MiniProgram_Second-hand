@@ -1,0 +1,27 @@
+<view class="container">
+  <loading hidden="{{loadingHide}}">
+    {{loadingText}}
+  </loading>
+
+  <view class="title">价格区间详情</view>
+  <view class="priceRegion_detail_view"> 
+      <view class="viewItem">
+        <view class="label">记录编号：</view>
+        <view class="content">
+          <view>{{regionId}}</view>
+        </view>
+      </view>
+
+       <view class="viewItem">
+        <view class="label">价格区间：</view>
+        <view class="content"> 
+          <view>{{regionName}}</view>
+        </view>
+      </view>
+
+      <view>
+        <navigator class="btnReturn" open-type="navigateBack" hover-class="navigator-hover">返回</navigator>
+      </view>
+
+  </view>
+</view>

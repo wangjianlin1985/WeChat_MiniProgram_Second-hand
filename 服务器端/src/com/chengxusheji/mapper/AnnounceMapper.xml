@@ -1,0 +1,48 @@
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace命名空间，为了对sql语句进行隔离，方便管理，mapper开发dao方式，使用namespace有特殊作用  
+mapper代理开发时将namespace指定为mapper接口的全限定名  
+ -->
+<mapper namespace="com.chengxusheji.mapper.AnnounceMapper"> 
+<!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象 
+mapper.xml以statement为单位管理sql语句  
+ -->
+	<!-- 添加公告信息记录 -->
+	<insert id="addAnnounce" parameterType="announce">
+		insert into t_announce(announceTitle,announceContent,announceDate) values 
+		(#{announceTitle},#{announceContent},#{announceDate})
+	</insert>
+
+	<!-- 按照查询条件分页查询公告信息记录 -->
+	<select id="queryAnnounce" resultMap="announceMap" >
+		select t_announce.* from t_announce ${where} limit #{startIndex},#{pageSize}
+	</select>
+	<resultMap id="announceMap" type="announce">
+        <id property="announceId" column="announceId" />
+    </resultMap>
+
+    <!-- 按照查询条件查询所有公告信息记录 -->
+	<select id="queryAnnounceList" resultMap="announceMap" >
+		select t_announce.* from t_announce ${where}
+	</select>
+
+    <!-- 按照查询条件的公告信息记录数 -->
+	<select id="queryAnnounceCount" resultType="int">
+		select count(*) from t_announce ${where}
+	</select>
+
+	<!-- 根据主键查询某个公告信息记录 -->
+	<select id="getAnnounce" parameterType="int" resultMap="announceMap">
+		select * from t_announce where t_announce.announceId = #{announceId}
+	</select>
+
+	<!-- 更新公告信息记录 -->
+	<update id="updateAnnounce" parameterType="announce">
+		update t_announce set announceTitle=#{announceTitle},announceContent=#{announceContent},announceDate=#{announceDate} where announceId = #{announceId}
+	</update>
+
+	<!-- 删除公告信息记录 -->
+	<delete id="deleteAnnounce" parameterType="int">
+		delete from t_announce where announceId=#{announceId}
+	</delete>
+
+</mapper>

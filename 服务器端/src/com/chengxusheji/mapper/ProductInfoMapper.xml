@@ -1,0 +1,59 @@
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace命名空间，为了对sql语句进行隔离，方便管理，mapper开发dao方式，使用namespace有特殊作用  
+mapper代理开发时将namespace指定为mapper接口的全限定名  
+ -->
+<mapper namespace="com.chengxusheji.mapper.ProductInfoMapper"> 
+<!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象 
+mapper.xml以statement为单位管理sql语句  
+ -->
+	<!-- 添加商品信息记录 -->
+	<insert id="addProductInfo" parameterType="productInfo">
+		insert into t_productInfo(productClassObj,productName,priceRegionObj,price,newOldLevelObj,areaObj,productPhoto,connectPerson,connectPhone,productDes,userObj,addTime) values 
+		(#{productClassObj.productClassId},#{productName},#{priceRegionObj.regionId},#{price},#{newOldLevelObj.levelId},#{areaObj.areaId},#{productPhoto},#{connectPerson},#{connectPhone},#{productDes},#{userObj.user_name},#{addTime})
+	</insert>
+
+	<!-- 按照查询条件分页查询商品信息记录 -->
+	<select id="queryProductInfo" resultMap="productInfoMap" >
+		select t_productInfo.* from t_productInfo,t_areaInfo,t_newOldLevel,t_priceRegion,t_productClass,t_userInfo ${where} and t_productInfo.productClassObj = t_productClass.productClassId and t_productInfo.priceRegionObj = t_priceRegion.regionId and t_productInfo.newOldLevelObj = t_newOldLevel.levelId and t_productInfo.areaObj = t_areaInfo.areaId and t_productInfo.userObj = t_userInfo.user_name limit #{startIndex},#{pageSize}
+	</select>
+	<resultMap id="productInfoMap" type="productInfo">
+        <id property="productId" column="productId" />
+        <association property="productClassObj" column="productClassObj" select="com.chengxusheji.mapper.ProductClassMapper.getProductClass" />
+        <association property="priceRegionObj" column="priceRegionObj" select="com.chengxusheji.mapper.PriceRegionMapper.getPriceRegion" />
+        <association property="newOldLevelObj" column="newOldLevelObj" select="com.chengxusheji.mapper.NewOldLevelMapper.getNewOldLevel" />
+        <association property="areaObj" column="areaObj" select="com.chengxusheji.mapper.AreaInfoMapper.getAreaInfo" />
+        <association property="userObj" column="userObj" select="com.chengxusheji.mapper.UserInfoMapper.getUserInfo" />
+    </resultMap>
+
+    <!-- 按照查询条件查询所有商品信息记录 -->
+	<select id="queryProductInfoList" resultMap="productInfoMap" >
+		select t_productInfo.* from t_productInfo,t_areaInfo,t_newOldLevel,t_priceRegion,t_productClass,t_userInfo ${where} and t_productInfo.productClassObj = t_productClass.productClassId and t_productInfo.priceRegionObj = t_priceRegion.regionId and t_productInfo.newOldLevelObj = t_newOldLevel.levelId and t_productInfo.areaObj = t_areaInfo.areaId and t_productInfo.userObj = t_userInfo.user_name
+	</select>
+	
+	<!-- 查询最新5条商品信息记录 -->
+	<select id="queryNewProductInfoList" resultMap="productInfoMap" >
+		select t_productInfo.* from t_productInfo order by t_productInfo.addTime DESC limit 0,5
+	</select>
+	
+
+    <!-- 按照查询条件的商品信息记录数 -->
+	<select id="queryProductInfoCount" resultType="int">
+		select count(*) from t_productInfo,t_areaInfo,t_newOldLevel,t_priceRegion,t_productClass,t_userInfo ${where} and t_productInfo.productClassObj = t_productClass.productClassId and t_productInfo.priceRegionObj = t_priceRegion.regionId and t_productInfo.newOldLevelObj = t_newOldLevel.levelId and t_productInfo.areaObj = t_areaInfo.areaId and t_productInfo.userObj = t_userInfo.user_name
+	</select>
+
+	<!-- 根据主键查询某个商品信息记录 -->
+	<select id="getProductInfo" parameterType="int" resultMap="productInfoMap">
+		select * from t_productInfo where t_productInfo.productId = #{productId}
+	</select>
+
+	<!-- 更新商品信息记录 -->
+	<update id="updateProductInfo" parameterType="productInfo">
+		update t_productInfo set productClassObj=#{productClassObj.productClassId},productName=#{productName},priceRegionObj=#{priceRegionObj.regionId},price=#{price},newOldLevelObj=#{newOldLevelObj.levelId},areaObj=#{areaObj.areaId},productPhoto=#{productPhoto},connectPerson=#{connectPerson},connectPhone=#{connectPhone},productDes=#{productDes},userObj=#{userObj.user_name},addTime=#{addTime} where productId = #{productId}
+	</update>
+
+	<!-- 删除商品信息记录 -->
+	<delete id="deleteProductInfo" parameterType="int">
+		delete from t_productInfo where productId=#{productId}
+	</delete>
+
+</mapper>

@@ -1,0 +1,22 @@
+<view class="container">
+  <loading hidden="{{loadingHide}}">
+    {{loadingText}}
+  </loading>
+  <view class="title">添加商品分类</view>
+
+  <view class="productClass_add_view">
+    <form bindsubmit="formSubmit">
+      <view class="formItem">
+        <view class="label">类别名称：</view>
+        <view class="formControl">
+          <input type="text" name="productClass.productClassName" placeholder="请输入类别名称" value="{{productClassName}}" />
+        </view>
+      </view>
+
+      <view>
+        <button class="vBtn_ok" formType="submit" disabled="{{disabled}}">提交发布</button>
+      </view>
+
+    </form>
+  </view>
+</view>

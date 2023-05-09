@@ -1,0 +1,27 @@
+<view class="container">
+  <loading hidden="{{loadingHide}}">
+    {{loadingText}}
+  </loading>
+  <view class="title">编辑新旧程度</view>
+
+  <view class="newOldLevel_modify_view">
+    <form bindsubmit="formSubmit">
+       <view class="formItem">
+        <view class="label">记录编号：</view>
+        <view class="formControl">
+          <input type="text" name="newOldLevel.levelId" disabled="true" value="{{levelId}}" />
+        </view>
+      </view>
+      <view class="formItem">
+        <view class="label">新旧程度：</view>
+        <view class="formControl">
+          <input type="text" name="newOldLevel.levelName" placeholder="请输入新旧程度" value="{{levelName}}" />
+        </view>
+      </view>
+
+      <view>
+        <button class="vBtn_ok" formType="submit" disabled="{{disabled}}">提交修改</button>
+      </view>
+    </form>
+  </view>
+</view>

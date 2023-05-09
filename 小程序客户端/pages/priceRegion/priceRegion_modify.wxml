@@ -1,0 +1,27 @@
+<view class="container">
+  <loading hidden="{{loadingHide}}">
+    {{loadingText}}
+  </loading>
+  <view class="title">编辑价格区间</view>
+
+  <view class="priceRegion_modify_view">
+    <form bindsubmit="formSubmit">
+       <view class="formItem">
+        <view class="label">记录编号：</view>
+        <view class="formControl">
+          <input type="text" name="priceRegion.regionId" disabled="true" value="{{regionId}}" />
+        </view>
+      </view>
+      <view class="formItem">
+        <view class="label">价格区间：</view>
+        <view class="formControl">
+          <input type="text" name="priceRegion.regionName" placeholder="请输入价格区间" value="{{regionName}}" />
+        </view>
+      </view>
+
+      <view>
+        <button class="vBtn_ok" formType="submit" disabled="{{disabled}}">提交修改</button>
+      </view>
+    </form>
+  </view>
+</view>

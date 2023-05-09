@@ -1,0 +1,83 @@
+<view class="container">
+  <loading hidden="{{loadingHide}}">
+    {{loadingText}}
+  </loading>
+
+  <view class="title">用户信息详情</view>
+  <view class="userInfo_detail_view"> 
+      <view class="viewItem">
+        <view class="label">手机用户名：</view>
+        <view class="content">
+          <view>{{user_name}}</view>
+        </view>
+      </view>
+
+       <view class="viewItem">
+        <view class="label">登陆密码：</view>
+        <view class="content"> 
+          <view>{{password}}</view>
+        </view>
+      </view>
+
+       <view class="viewItem">
+        <view class="label">姓名：</view>
+        <view class="content"> 
+          <view>{{realname}}</view>
+        </view>
+      </view>
+
+       <view class="viewItem">
+        <view class="label">性别：</view>
+        <view class="content"> 
+          <view>{{sex}}</view>
+        </view>
+      </view>
+
+       <view class="viewItem">
+        <view class="label">出生日期：</view>
+        <view class="content"> 
+          <view>{{bornDate}}</view>
+        </view>
+      </view>
+
+       <view class="viewItem">
+        <view class="label">用户qq：</view>
+        <view class="content"> 
+          <view>{{qq}}</view>
+        </view>
+      </view>
+
+       <view class="viewItem">
+        <view class="label">家庭地址：</view>
+        <view class="content"> 
+          <view>{{address}}</view>
+        </view>
+      </view>
+
+       <view class="viewItem">
+        <view class="label">用户邮箱：</view>
+        <view class="content"> 
+          <view>{{email}}</view>
+        </view>
+      </view>
+
+       <view class="viewItem">
+        <view class="label">用户头像：</view>
+        <view class="content"> 
+          <image mode="aspectFill" src="{{myPhotoUrl}}"></image>
+        </view>
+      </view>
+
+       <view class="viewItem">
+        <view class="label">附加信息：</view>
+        <view class="content"> 
+          <view>{{memo}}</view>
+        </view>
+      </view>
+
+      <view>
+        <navigator class="btnReturn" open-type="navigateBack" hover-class="navigator-hover">返回</navigator>
+      </view>
+
+  </view>
+</view>
